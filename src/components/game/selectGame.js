@@ -33,7 +33,7 @@ class SelectGame extends Component {
   };
 
   render() {
-    const { classes,allGamesConfig } = this.props;
+    const { classes, allGamesConfig } = this.props;
     const { spacing } = this.state;
     return (
       <div className={classes.root}>
@@ -41,8 +41,12 @@ class SelectGame extends Component {
         <Grid container className={classes.root}>
           <Grid item xs={12}>
             <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
-              {allGamesConfig.map(game => (
-                <Grid key={game.id} item onClick={() => this.props.nextPage('selectedGameId', game.id)}>
+              {allGamesConfig.map((game, index) => (
+                <Grid
+                  key={game.id}
+                  item
+                  onClick={() => this.props.nextPage('selectedGame', { index: index, id: game.id })}
+                >
                   <Paper className={classes.paper}>
                     <Typography variant="headline" component="h3">
                       {game.name}

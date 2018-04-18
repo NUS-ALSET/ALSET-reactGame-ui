@@ -1,7 +1,7 @@
 {
   "games": [
     {
-      "id": 0,
+      "id": "gemCollector",
       "name": "Gem Collector",
       "editableConfig": {
         "player1Keys": {
@@ -19,49 +19,45 @@
       },
       "gameModes": [
         {
-          "id": 0,
+          "id": "player-vs-player",
           "name": "Player vs Player"
         },
         {
-          "id": 1,
+          "id": "player-vs-bot",
           "name": "Player vs Bot"
         },
         {
-          "id": 2,
+          "id": "bot-vs-bot",
           "name": "Bot vs Bot"
         },
         {
-          "id": 3,
+          "id": "bot-vs-custom-code",
           "name": "Bot vs Custom Code"
         }
       ]
     },
     {
-      "id": 1,
+      "id": "squad",
       "name": "Squad Game",
       "editableConfig": {
-        "player1Keys":{"left":"s","right":"f","up":"e","down":"d", "action":"w"},
-        "player2Keys":{"left":"j","right":"l","up":"i","down":"k", "action":"p"}
+        "player1Keys": { "left": "s", "right": "f", "up": "e", "down": "d", "action": "w" },
+        "player2Keys": { "left": "j", "right": "l", "up": "i", "down": "k", "action": "p" }
       },
       "gameModes": [
         {
-          "id": 0,
+          "id": "player-vs-player",
+          "name": "Player vs Player"
+        },
+        {
+          "id": "player-vs-bot",
           "name": "Player vs Bot"
         },
         {
-          "id": 1,
-          "name": "Gem Collector"
+          "id": "bot-vs-bot",
+          "name": "Bot vs Bot"
         },
         {
-          "id": 2,
-          "name": "Single Player Two Windows"
-        },
-        {
-          "id": 3,
-          "name": "Squad Game"
-        },
-        {
-          "id": 4,
+          "id": "bot-vs-custom-code",
           "name": "Bot vs Custom Code"
         }
       ]

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
+import AlsetReactGame from 'alset-reactgame-test';
 
 import SelectGame from './selectGame';
 import EditConfig from './editConfig';
@@ -26,7 +27,10 @@ class Index extends Component {
     super();
     this.state = {
       activePageNum: 0,
-      selectedGameId: 0,
+      selectedGame: {
+        index: 0,
+        id: 'squad',
+      },
       selectedGameMode: {
         id: null,
         name: null,
@@ -42,6 +46,11 @@ class Index extends Component {
   nextPage(stateKey = null, stateValue = null) {
     if (this.state.activePageNum < 3) {
       if (stateKey) {
+        // remove in future
+        if (stateKey === 'selectedGame' && stateValue.id !== 'gemCollector') {
+          alert('Not integrated yet');
+          return;
+        }
         this.setState({ [stateKey]: stateValue });
       }
       this.setState({ activePageNum: this.state.activePageNum + 1 });
@@ -73,7 +82,7 @@ class Index extends Component {
   }
   handleGameEvent(newEvent) {
     const events = this.state.events;
-    const selectedGame = allGamesConfig.games[this.state.selectedGameId];
+    const selectedGame = allGamesConfig.games[this.state.selectedGame.index];
     this.setState({
       events: [
         ...events,
@@ -88,7 +97,7 @@ class Index extends Component {
   }
   render() {
     const { classes } = this.props;
-    const { activePageNum, selectedGameId, selectedGameMode, events } = this.state;
+    const { activePageNum, events } = this.state;
     const controlButtons = (
       <div className={classes.controls}>
         <Divider />
@@ -104,15 +113,12 @@ class Index extends Component {
       <div>
         {this.getActivePage()}
         {activePageNum > 0 && controlButtons}
-        <div style={{ marginTop: '100px' }}>
-          { activePageNum === 0 && <EventsTable events={events} /> }
-        </div>
+        <div style={{ marginTop: '100px' }}>{activePageNum === 0 && <EventsTable events={events} />}</div>
       </div>
     );
   }
   getActivePage = () => {
-    const { activePageNum, selectedGameId, selectedGameMode, selectedGameConfig, events } = this.state;
-    const selectedGame = allGamesConfig.games[selectedGameId];
+    const { activePageNum, selectedGame, selectedGameMode, selectedGameConfig } = this.state;
     switch (activePageNum) {
       case 0: {
         return (
@@ -120,17 +126,33 @@ class Index extends Component {
         );
       }
       case 1: {
-        return <EditConfig nextPage={(key, value) => this.nextPage(key, value)} selectedGame={selectedGame} />;
+        return (
+          <EditConfig
+            nextPage={(key, value) => this.nextPage(key, value)}
+            selectedGame={allGamesConfig.games[selectedGame.index]}
+          />
+        );
       }
       case 2: {
-        return <SelectMode nextPage={(key, value) => this.nextPage(key, value)} selectedGame={selectedGame} />;
+        return (
+          <SelectMode
+            nextPage={(key, value) => this.nextPage(key, value)}
+            selectedGame={allGamesConfig.games[selectedGame.index]}
+          />
+        );
       }
       case 3: {
         return (
-          <h2>Game Component will be integrate here!</h2>
+          <AlsetReactGame
+            game={selectedGame.id}
+            mode={selectedGameMode.id}
+            config={selectedGameConfig}
+            onScoreUpdate={() => {}}
+          />
         );
       }
-      default:return null
+      default:
+        return null;
     }
   };
 }
