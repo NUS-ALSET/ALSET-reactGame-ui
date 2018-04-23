@@ -2,6 +2,7 @@
   "name": "alset-game",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://walkwel.github.io/ALSET-reactGame-ui/",
   "dependencies": {
     "alset-reactgame-test": "^0.1.2",
     "autoprefixer": "7.1.6",
@@ -58,27 +59,17 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "deploy": "gh-pages -d build"
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "transform-decorators-legacy"
-    ]
+    "presets": ["react-app"],
+    "plugins": ["transform-decorators-legacy"]
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
+    "testMatch": ["<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}", "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"],
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
@@ -86,23 +77,16 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
+    "moduleFileExtensions": ["web.js", "mjs", "js", "json", "web.jsx", "jsx", "node"]
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
   }
 }
