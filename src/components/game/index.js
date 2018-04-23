@@ -15,11 +15,11 @@ import allGamesConfig from '../../config.json';
 const styles = theme => ({
   button: {
     margin: '5px',
-    float: 'left',
+    float: 'left'
   },
   controls: {
-    margin: '20px 10px',
-  },
+    margin: '20px 10px'
+  }
 });
 
 class Index extends Component {
@@ -29,14 +29,15 @@ class Index extends Component {
       activePageNum: 0,
       selectedGame: {
         index: 0,
-        id: 'squad',
+        id: 'gemCollector',
+        name: 'Gem Collector'
       },
       selectedGameMode: {
         id: null,
-        name: null,
+        name: null
       },
       selectedGameConfig: null,
-      events: [],
+      events: []
     };
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
@@ -46,11 +47,6 @@ class Index extends Component {
   nextPage(stateKey = null, stateValue = null) {
     if (this.state.activePageNum < 3) {
       if (stateKey) {
-        // remove in future
-        if (stateKey === 'selectedGame' && stateValue.id !== 'gemCollector') {
-          alert('Not integrated yet');
-          return;
-        }
         this.setState({ [stateKey]: stateValue });
       }
       this.setState({ activePageNum: this.state.activePageNum + 1 });
@@ -60,8 +56,9 @@ class Index extends Component {
     if (this.state.activePageNum > 0) {
       if (this.state.activePageNum === 3) {
         this.handleGameEvent({
-          type: 'end',
+          type: 'end'
         });
+        window.location.reload();
       }
       this.setState({ activePageNum: this.state.activePageNum - 1 });
     }
@@ -72,13 +69,14 @@ class Index extends Component {
       selectedGameId: 0,
       selectedGameMode: {
         id: null,
-        name: null,
+        name: null
       },
-      selectedGameConfig: null,
+      selectedGameConfig: null
     });
     this.handleGameEvent({
-      type: 'end',
+      type: 'end'
     });
+    window.location.reload();
   }
   handleGameEvent(newEvent) {
     const events = this.state.events;
@@ -90,9 +88,9 @@ class Index extends Component {
           ...newEvent,
           selectedGame: selectedGame,
           gameMode: this.state.selectedGameMode,
-          timeStamp: Date.now(),
-        },
-      ],
+          timeStamp: Date.now()
+        }
+      ]
     });
   }
   render() {
@@ -101,12 +99,15 @@ class Index extends Component {
     const controlButtons = (
       <div className={classes.controls}>
         <Divider />
-        <Button variant="raised" className={classes.button} onClick={() => this.previousPage()}>
-          Back
-        </Button>
-        <Button variant="raised" color="secondary" className={classes.button} onClick={() => this.resetGame()}>
-          End
-        </Button>
+        {activePageNum !== 3 ? (
+          <Button variant="raised" className={classes.button} onClick={() => this.previousPage()}>
+            Back
+          </Button>
+        ) : (
+          <Button variant="raised" color="secondary" className={classes.button} onClick={() => this.resetGame()}>
+            End
+          </Button>
+        )}
       </div>
     );
     return (
@@ -142,14 +143,7 @@ class Index extends Component {
         );
       }
       case 3: {
-        return (
-          <AlsetReactGame
-            game={selectedGame.id}
-            mode={selectedGameMode.id}
-            config={selectedGameConfig}
-            onScoreUpdate={() => {}}
-          />
-        );
+        return <AlsetReactGame game={selectedGame.id} mode={selectedGameMode.id} onScoreUpdate={() => {}} />;
       }
       default:
         return null;
