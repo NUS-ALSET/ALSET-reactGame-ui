@@ -31,7 +31,13 @@ class SelectGame extends Component {
       [key]: value,
     });
   };
-
+  nextPage=(index,game)=>{
+    if(game.active===false){
+      alert('Not integrated yet');
+    }else{
+      this.props.nextPage('selectedGame', { index: index, id: game.id });
+    }
+  }
   render() {
     const { classes, allGamesConfig } = this.props;
     const { spacing } = this.state;
@@ -45,7 +51,7 @@ class SelectGame extends Component {
                 <Grid
                   key={game.id}
                   item
-                  onClick={() => this.props.nextPage('selectedGame', { index: index, id: game.id })}
+                  onClick={() =>this.nextPage(index,game)}
                 >
                   <Paper className={classes.paper}>
                     <Typography variant="headline" component="h3">

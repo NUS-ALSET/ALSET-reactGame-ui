@@ -3,6 +3,7 @@
     {
       "id": "gemCollectorOrg",
       "name": "Gem Collector",
+      "active" : true, 
       "editableConfig": {
         "player1Keys": {
           "left": 37,
@@ -39,6 +40,7 @@
     {
       "id": "squadGemCollector",
       "name": "Squad Gem Collector",
+      "active" : true,
       "editableConfig": {
         "showCodeEditor":false,
         "mode":"player-vs-bot",
@@ -257,6 +259,7 @@
     {
       "id": "singlePlayerTwoWindows",
       "name": "Single Player Two Windows",
+      "active":true,
       "editableConfig": {
         "showCodeEditor":false,
         "player":"player1",
@@ -655,6 +658,7 @@
     {
       "id": "squad",
       "name": "Squad",
+      "active" : true,
       "editableConfig":{
         "showCodeEditor":false,
         "player":"player1",
@@ -1059,6 +1063,43 @@
           "name": "Bot vs Custom Code"
         }
       ]
-    }
+    },
+    {
+        "id": "passengerPicker",
+        "name": "Passenger Picker",
+        "active" : false,
+        "editableConfig": {
+          "player1Keys": {
+            "left": 37,
+            "right": 39,
+            "up": 38,
+            "down": 40
+          },
+          "player2Keys": {
+            "left": 74,
+            "right": 76,
+            "up": 73,
+            "down": 75
+          }
+        },
+        "gameModes": [
+          {
+            "id": "player-vs-player",
+            "name": "Player vs Player"
+          },
+          {
+            "id": "player-vs-bot",
+            "name": "Player vs Bot"
+          },
+          {
+            "id": "bot-vs-bot",
+            "name": "Bot vs Bot"
+          },
+          {
+            "id": "bot-vs-custom-code",
+            "name": "Bot vs Custom Code"
+          }
+        ]
+      }
   ]
 }
