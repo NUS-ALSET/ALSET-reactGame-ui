@@ -30,6 +30,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
+    padding : '0px !important'
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
@@ -51,8 +52,9 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    marginTop: '100px',
+    paddingTop: '100px',
     marginBottom: '100px',
+    minHeight : '100vh'
   },
 });
 

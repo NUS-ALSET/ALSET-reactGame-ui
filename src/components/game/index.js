@@ -10,6 +10,7 @@ import SelectGame from './selectGame';
 import EditConfig from './editConfig';
 import SelectMode from './selectMode';
 import EventsTable from './eventsTable';
+import Info from './info';
 import allGamesConfig from '../../config.json';
 
 const styles = theme => ({
@@ -143,7 +144,17 @@ class Index extends Component {
         );
       }
       case 3: {
-        return <AlsetReactGame game={selectedGame.id} mode={selectedGameMode.id} onScoreUpdate={() => {}} />;
+        return (
+          <div>
+            <Info mode={selectedGameMode} config={selectedGameConfig}/>
+            <AlsetReactGame
+              game={selectedGame.id}
+              config={selectedGameConfig}
+              mode={selectedGameMode.id}
+              onScoreUpdate={() => {}}
+            />
+          </div>
+        );
       }
       default:
         return null;
