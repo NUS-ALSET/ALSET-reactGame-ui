@@ -144,13 +144,15 @@ class Index extends Component {
         );
       }
       case 3: {
+        const showCodeEditor = selectedGameMode.id === 'bot-vs-custom-code';
         return (
           <div>
-            <Info mode={selectedGameMode} config={selectedGameConfig}/>
+            <Info mode={selectedGameMode} config={selectedGameConfig} />
             <AlsetReactGame
               game={selectedGame.id}
               config={selectedGameConfig}
               mode={selectedGameMode.id}
+              showCodeEditor={showCodeEditor}
               onScoreUpdate={() => {}}
             />
           </div>
