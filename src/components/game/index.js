@@ -115,7 +115,7 @@ class Index extends Component {
       <div>
         {this.getActivePage()}
         {activePageNum > 0 && controlButtons}
-        <div style={{ marginTop: '100px' }}>{activePageNum === 0 && <EventsTable events={events} />}</div>
+        {/* <div style={{ marginTop: '100px' }}>{activePageNum === 0 && <EventsTable events={events} />}</div> */}
       </div>
     );
   }
@@ -147,7 +147,7 @@ class Index extends Component {
         const showCodeEditor = selectedGameMode.id === 'bot-vs-custom-code';
         return (
           <div>
-            <Info mode={selectedGameMode} config={selectedGameConfig} />
+            <Info mode={selectedGameMode} game={selectedGame} config={selectedGameConfig} />
             <AlsetReactGame
               game={selectedGame.id}
               config={selectedGameConfig}

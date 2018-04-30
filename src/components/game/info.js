@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 
 const styles = theme => ({
   root: {
-    margin :'10px',
+    margin: '10px',
     flexGrow: 1
   },
   paper: {
@@ -17,7 +17,7 @@ const styles = theme => ({
 });
 
 function Info(props) {
-  const { classes, mode, config } = props;
+  const { classes, game, mode, config } = props;
   const showPlayersInfo = [false, false];
   switch (mode.id) {
     case 'player-vs-player': {
@@ -48,30 +48,47 @@ function Info(props) {
     }
     return info;
   };
-  const getMode=(index)=>{
+  const getMode = index => {
     return mode.id.split('-')[index].toUpperCase();
-  }
+  };
   return (
     <div className={classes.root}>
       <Grid container spacing={24}>
-         
-          <Grid item xs={5}>
-            <Paper className={classes.paper}>{ showPlayersInfo[0] ? (<span> <b>Player 1</b> : {getInfo(config.player1Keys)}</span>) : (<span>{getMode(0)}</span>)}</Paper>
-          </Grid>
-        
-        <Grid item xs={2}>
-            <Paper className={classes.paper}>{mode.name}</Paper>
-          </Grid>
-         
-          <Grid item xs={5}>
-            <Paper className={classes.paper}>{ showPlayersInfo[1] ? (<span> <b>Player 2</b> : {getInfo(config.player2Keys)}</span>) : (<span>{getMode(2)}</span>)}</Paper>
-          </Grid>
-        
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            {showPlayersInfo[0] ? (
+              <span>
+                {' '}
+                <b>Player 1</b> : {getInfo(config.player1Keys)}
+              </span>
+            ) : (
+              <span>{getMode(0)}</span>
+            )}
+          </Paper>
+        </Grid>
+
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            <b>{game.name}</b> : {mode.name}
+          </Paper>
+        </Grid>
+
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            {showPlayersInfo[1] ? (
+              <span>
+                {' '}
+                <b>Player 2</b> : {getInfo(config.player2Keys)}
+              </span>
+            ) : (
+              <span>{getMode(2)}</span>
+            )}
+          </Paper>
+        </Grid>
       </Grid>
     </div>
   );
 }
-
 
 Info.propTypes = {
   classes: PropTypes.object.isRequired

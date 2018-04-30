@@ -20,6 +20,13 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  paper: {
+    textAlign: 'center',
+    padding: '0px 0px',
+  },
+  title: {
+    padding: '20px 0px',
+  },
 });
 
 class EditConfig extends Component {
@@ -53,29 +60,31 @@ class EditConfig extends Component {
 
     return (
       <div className={classes.root}>
-        <Typography variant="display1">
+        <Typography variant="display1" className={classes.title}>
           <b>{selectedGame.name} :</b> Edit Configuration
         </Typography>
-        <AceEditor
-          mode="json"
-          theme="github"
-          name="configEditor"
-          width={'100%'}
-          onChange={this.handleChange}
-          onValidate={this.handleValidation}
-          fontSize={14}
-          showPrintMargin={true}
-          showGutter={true}
-          highlightActiveLine={true}
-          value={config}
-          setOptions={{
-            enableBasicAutocompletion: false,
-            enableLiveAutocompletion: false,
-            enableSnippets: false,
-            showLineNumbers: true,
-            tabSize: 2,
-          }}
-        />
+        <Paper className={classes.paper}>
+          <AceEditor
+            mode="json"
+            theme="github"
+            name="configEditor"
+            width={'100%'}
+            onChange={this.handleChange}
+            onValidate={this.handleValidation}
+            fontSize={14}
+            showPrintMargin={true}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={config}
+            setOptions={{
+              enableBasicAutocompletion: false,
+              enableLiveAutocompletion: false,
+              enableSnippets: false,
+              showLineNumbers: true,
+              tabSize: 2,
+            }}
+          />
+        </Paper>
         <Button variant="raised" color="primary" className={classes.button} onClick={this.handleSave}>
           Next
         </Button>
