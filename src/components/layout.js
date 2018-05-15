@@ -30,6 +30,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
     },
+    padding: '0px !important',
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
@@ -50,9 +51,9 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    marginTop: '100px',
-    marginBottom: '100px',
+    backgroundColor: '#f0f0f0',
+    paddingTop: '100px',
+    minHeight: '90vh',
   },
 });
 
@@ -86,8 +87,7 @@ class Layout extends React.Component {
               aria-label="open drawer"
               onClick={this.handleDrawerToggle}
               className={classes.navIconHide}
-            >
-            </IconButton>
+            />
             <Typography variant="title" color="inherit" noWrap>
               ALSET Game
             </Typography>
@@ -105,8 +105,7 @@ class Layout extends React.Component {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
-          >
-          </Drawer>
+          />
         </Hidden>
         <Hidden smDown implementation="css">
           {/* <Drawer

@@ -20,6 +20,9 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
+  title: {
+    padding: '20px 0px',
+  },
 });
 
 class SelectMode extends Component {
@@ -39,7 +42,7 @@ class SelectMode extends Component {
     const gameModes = selectedGame.gameModes;
     return (
       <div className={classes.root}>
-        <Typography variant="display1">
+        <Typography variant="display1" className={classes.title}>
           <b>{selectedGame.name} :</b> Select Mode
         </Typography>
         <Grid container className={classes.root}>

@@ -10,6 +10,7 @@ import SelectGame from './selectGame';
 import EditConfig from './editConfig';
 import SelectMode from './selectMode';
 import EventsTable from './eventsTable';
+import Info from './info';
 import allGamesConfig from '../../config.json';
 
 const styles = theme => ({
@@ -114,7 +115,7 @@ class Index extends Component {
       <div>
         {this.getActivePage()}
         {activePageNum > 0 && controlButtons}
-        <div style={{ marginTop: '100px' }}>{activePageNum === 0 && <EventsTable events={events} />}</div>
+        {/* <div style={{ marginTop: '100px' }}>{activePageNum === 0 && <EventsTable events={events} />}</div> */}
       </div>
     );
   }
@@ -143,7 +144,19 @@ class Index extends Component {
         );
       }
       case 3: {
-        return <AlsetReactGame game={selectedGame.id} mode={selectedGameMode.id} onScoreUpdate={() => {}} />;
+        const showCodeEditor = selectedGameMode.id === 'bot-vs-custom-code';
+        return (
+          <div>
+            <Info mode={selectedGameMode} game={selectedGame} config={selectedGameConfig} />
+            <AlsetReactGame
+              game={selectedGame.id}
+              config={selectedGameConfig}
+              mode={selectedGameMode.id}
+              showCodeEditor={showCodeEditor}
+              onScoreUpdate={() => {}}
+            />
+          </div>
+        );
       }
       default:
         return null;

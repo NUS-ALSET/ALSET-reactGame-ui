@@ -19,6 +19,9 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
+  title: {
+    padding: '20px 0px',
+  },
 });
 
 class SelectGame extends Component {
@@ -31,22 +34,26 @@ class SelectGame extends Component {
       [key]: value,
     });
   };
-
+  nextPage = (index, game) => {
+    if (game.active === false) {
+      alert('Not integrated yet');
+    } else {
+      this.props.nextPage('selectedGame', { index: index, id: game.id, name: game.name });
+    }
+  };
   render() {
     const { classes, allGamesConfig } = this.props;
     const { spacing } = this.state;
     return (
       <div className={classes.root}>
-        <Typography variant="display1">Select Game</Typography>
+        <Typography variant="display1" className={classes.title}>
+          Select Game
+        </Typography>
         <Grid container className={classes.root}>
           <Grid item xs={12}>
             <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
               {allGamesConfig.map((game, index) => (
-                <Grid
-                  key={game.id}
-                  item
-                  onClick={() => this.props.nextPage('selectedGame', { index: index, id: game.id })}
-                >
+                <Grid key={game.id} item onClick={() => this.nextPage(index, game)}>
                   <Paper className={classes.paper}>
                     <Typography variant="headline" component="h3">
                       {game.name}
